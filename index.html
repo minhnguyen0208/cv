@@ -586,9 +586,11 @@
     //         subdomainName: "minhnguyen0208",
     //     });
     // });
+    if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/[cv]/service-worker.js', {scope: '/[repository]/'})
+    }
     const beamsClient = new PusherPushNotifications.Client({
         instanceId: '8ade1f5b-b9f5-4dca-9d86-c37f9bbbf61d',
-        serviceWorkerRegistration: 'cv/service-worker.js',
     });
 
     beamsClient.start()
