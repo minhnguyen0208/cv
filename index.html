@@ -571,7 +571,7 @@
 <script src="scripts/main.js"></script>
 <!--<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>-->
 <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
-<script src="https://js.pusher.com/beams/service-worker.js" async=""></script>
+<script src="service-worker.js"></script>
 <script>
     // window.OneSignal = window.OneSignal || [];
     // OneSignal.push(function() {
@@ -588,6 +588,7 @@
     // });
     const beamsClient = new PusherPushNotifications.Client({
         instanceId: '8ade1f5b-b9f5-4dca-9d86-c37f9bbbf61d',
+        serviceWorkerRegistration: 'cv/service-worker.js',
     });
 
     beamsClient.start()
