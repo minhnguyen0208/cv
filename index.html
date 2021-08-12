@@ -537,6 +537,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <button class="btn btn-primary" type="submit">Send</button>
+                                                            <button class="btn btn-warning float-right" type="button" onclick="enableNotification()">Enable Notification</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -569,34 +570,34 @@
 <script src="js/now-ui-kit.js?v=1.1.0"></script>
 <script src="js/aos.js"></script>
 <script src="scripts/main.js"></script>
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<!--<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>-->
 <script src="pusher.js"></script>
 <script src="service-worker.js"></script>
 <script>
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-        OneSignal.SERVICE_WORKER_PARAM = { scope: '/cv/' };
-        OneSignal.SERVICE_WORKER_PATH = 'cv/OneSignalSDKWorker.js'
-        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'cv/OneSignalSDKUpdaterWorker.js'
-        OneSignal.init({
-            appId: "9bc0e69b-4d94-4ed2-a82c-36257feeafcd",
-            notifyButton: {
-                enable: true,
-            },
-            subdomainName: "minhnguyen0208",
+    // window.OneSignal = window.OneSignal || [];
+    // OneSignal.push(function() {
+    //     OneSignal.SERVICE_WORKER_PARAM = { scope: '/cv/' };
+    //     OneSignal.SERVICE_WORKER_PATH = 'cv/OneSignalSDKWorker.js'
+    //     OneSignal.SERVICE_WORKER_UPDATER_PATH = 'cv/OneSignalSDKUpdaterWorker.js'
+    //     OneSignal.init({
+    //         appId: "9bc0e69b-4d94-4ed2-a82c-36257feeafcd",
+    //         notifyButton: {
+    //             enable: true,
+    //         },
+    //         subdomainName: "minhnguyen0208",
+    //     });
+    // });
+    function enableNotification()
+    {
+        const beamsClient = new PusherPushNotifications.Client({
+            instanceId: 'c16754ab-5587-443b-b364-e31a67c3b694',
         });
-    });
-    if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('/cv/service-worker.js', {scope: '/cv/'})
-    }
-    const beamsClient = new PusherPushNotifications.Client({
-        instanceId: 'c16754ab-5587-443b-b364-e31a67c3b694',
-    });
 
-    beamsClient.start()
-        .then(() => beamsClient.addDeviceInterest('hello'))
-        .then(() => console.log('Successfully registered and subscribed!'))
-        .catch(console.error);
+        beamsClient.start()
+            .then(() => beamsClient.addDeviceInterest('hello'))
+            .then(() => console.log('Successfully registered and subscribed!'))
+            .catch(console.error);
+    }
 </script>
 </body>
 
